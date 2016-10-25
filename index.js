@@ -1,9 +1,17 @@
 const path = require('path'),
       koala = require('mr-koala'),
-      mysql = require('mysql-co');
+      Knex = require('knex'),
+      Model = require('objection').Model,
+      conf = require('./knexfile.js');
+      ModelUser = require('./models/user.js');
+
+
+const knex = Knex(conf.development);
+Model.knex(knex);
+
 
 const mr = koala(
-  'http://spec.wamw.jp/-KSkQFlChRMrSKoozi2N/raml',
+  'http://spec.wamw.jp/-KUapDjNDbpa5mw6GgcC/raml/1.0',
   {resources: path.dirname(__filename) + '/resources'}
 );
 
@@ -26,24 +34,6 @@ koala.auth.handlers.jwt = function(jwt_payload, cb) {
   }
   return cb(null, false);
 };
-
-// const config = {
-//   modelPath: path.join(__dirname, 'models'),
-//   db: 'bike-api',
-//   username: 'root',
-//   password: 'hogehoge',
-//   dialect: 'mysql',
-//   host: '127.0.0.1',
-//   port: 3306,
-//   pool: {
-//     maxConnections: 10,
-//     minConnections: 0,
-//     maxIdleTime: 30000
-//   }
-// };
-// const orm = koaOrm(config);
-
-// mr.use(orm.middleware);
 
 
 mr.listen(9001);
