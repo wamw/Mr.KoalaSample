@@ -1,1 +1,4 @@
+.envrc
+.imdone
 node_modules
+docker/db/
