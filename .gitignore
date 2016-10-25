@@ -2,3 +2,4 @@
 .imdone
 node_modules
 docker/db/
+npm-debug.log

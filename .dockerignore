@@ -2,3 +2,5 @@ node_modules
 README.md
 .gitignore
 .git
+.imdone
+npm-debug.log
