@@ -1,62 +1,31 @@
-const resources = require('mr-koala').resources,
+const jwt = require('jsonwebtoken'),
+      resources = require('mr-koala').resources,
       ModelUser = require('../models/user.js');
 
 
-resources.override('/users/:id', 'get', {
+resources.override('/token', 'post', {
   * response(context) {
-    // HACK-ME:10 password を返さないようにする
     const user = yield ModelUser.query()
-                                .omit(['password'])
-                                .findById(context.params.id)
-                                .then(function(result) { return result; });
-    return user;
-  }
-});
-
-
-resources.override('/users/:id', 'put', {
-  * response(context) {
-    // HACK-ME:10 password を返さないようにする
-    const user = yield ModelUser.query()
-                                .omit(['password'])
-                                .updateAndFetchById(context.params.id, context.request.body)
-                                .then(function(result) { return result; });
-    return user;
-  }
-});
-
-
-resources.override('/users/:id', 'patch', {
-  * response(context) {
-    // HACK-ME:10 password を返さないようにする
-    const user = yield ModelUser.query()
-                                .omit(['password'])
-                                .patchAndFetchById(context.params.id, context.request.body)
-                                .then(function(result) { return result; });
-    return user;
-  }
-});
-
-
-resources.override('/users/:id', 'delete', {
-  * response(context) {
-    const result = yield ModelUser.query()
-                                .deleteById(context.params.id)
-                                .then(function(result) { return result; });
-    return;
+                                .where('username', context.request.body.username)
+                                .where('password', context.request.body.password)
+    if (!user.length) {
+      context.throw('Forbidden', 403);
+    }
+    context.status = 200;
+    token = jwt.sign({ id: user[0].id }, 'ppap');
+    return { token: token };
   }
 });
 
 
 resources.override('/users', 'get', {
   * response(context) {
+    context.status = 200;
     const page = context.params.page || 0;
     const pageSize = context.params.pageSize || 2;
-    // HACK-ME:0 password を返さないようにする
     const users = yield ModelUser.query()
-                                 .omit(['password'])
-                                 .page(page, pageSize)
-                                 .then(function(result) { return result; });
+                                 .useOmit()
+                                 .page(page, pageSize);
     return users.results;
   }
 });
@@ -64,12 +33,53 @@ resources.override('/users', 'get', {
 
 resources.override('/users', 'post', {
   * response(context) {
-    // HACK-ME:0 password を返さないようにする
-    // TODO: insert 時に created_at と updated_at が返らない
+    context.status = 201;
     const user = yield ModelUser.query()
-                                .omit(['password'])
-                                .insert(context.request.body)
-                                .then(function(user) { return user; });
+                                .useOmit()
+                                .insert(context.request.body);
     return user;
+  }
+});
+
+
+resources.override('/users/:id', 'get', {
+  * response(context) {
+    context.status = 200;
+    const user = yield ModelUser.query()
+                                .useOmit()
+                                .findById(context.params.id);
+    return user;
+  }
+});
+
+
+resources.override('/users/:id', 'put', {
+  * response(context) {
+    context.status = 200;
+    const user = yield ModelUser.query()
+                                .useOmit()
+                                .updateAndFetchById(context.params.id, context.request.body);
+    return user;
+  }
+});
+
+
+resources.override('/users/:id', 'patch', {
+  * response(context) {
+    context.status = 200;
+    const user = yield ModelUser.query()
+                                .useOmit()
+                                .patchAndFetchById(context.params.id, context.request.body);
+    return user;
+  }
+});
+
+
+resources.override('/users/:id', 'delete', {
+  * response(context) {
+    context.status = 204;
+    const result = yield ModelUser.query()
+                                  .deleteById(context.params.id);
+    return;
   }
 });

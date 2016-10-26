@@ -1,12 +1,35 @@
-const Model = require('objection').Model;
-
-// TODO: insert時に created_at を入れる
-// TODO: update時に updated_at を更新する
+const dateformat = require('dateformat'),
+      Model = require('objection').Model,
+      QueryBuilder = require('objection').QueryBuilder;
 
 
 class User extends Model {
+
   static get tableName() { return 'users'; }
-  static get virtualAttributes() { return ['id', 'username', 'created_at', 'updated_at']; }
+  static get omitProperties() { return ['password']; }
+
+
+  $beforeInsert() {
+    // TODO:0 docker のtimezone を Asia/Tokyo にする必要がある
+    this.created_at = dateformat(new Date(), 'yyyy/mm/dd HH:MM:ss');
+    this.updated_at = dateformat(new Date(), 'yyyy/mm/dd HH:MM:ss');
+  }
+
+  $beforeUpdate() {
+    // TODO:10 docker のtimezone を Asia/Tokyo にする必要がある
+    this.updated_at = dateformat(new Date(), 'yyyy/mm/dd HH:MM:ss');
+  }
 }
+
+
+class UserQueryBuilder extends QueryBuilder {
+  useOmit() {
+    return this.omit(User.omitProperties);
+  }
+}
+
+
+User.QueryBuilder = UserQueryBuilder;
+User.RelatedQueryBuilder = UserQueryBuilder;
 
 module.exports = User;

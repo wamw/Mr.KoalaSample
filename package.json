@@ -1,5 +1,5 @@
 {
-  "name": "bike-api",
+  "name": "Mr.KoalaSample",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,6 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dateformat": "^1.0.12",
+    "jsonwebtoken": "^7.1.9",
     "knex": "^0.12.6",
     "mr-koala": "github:wamw/Mr.Koala",
     "mysql": "^2.11.1",

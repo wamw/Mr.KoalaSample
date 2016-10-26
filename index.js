@@ -11,8 +11,12 @@ Model.knex(knex);
 
 
 const mr = koala(
-  'http://spec.wamw.jp/-KUapDjNDbpa5mw6GgcC/raml/1.0',
-  {resources: path.dirname(__filename) + '/resources'}
+  // 'http://spec.wamw.jp/-KUapDjNDbpa5mw6GgcC/raml/1.0',
+  path.dirname(__filename) + '/api.raml',
+  {
+    resources: path.dirname(__filename) + '/resources',
+    secretKey: 'ppap'
+  }
 );
 
 
@@ -29,8 +33,8 @@ koala.auth.handlers.digest = function(username, cb) {
   return cb(null, false);
 };
 koala.auth.handlers.jwt = function(jwt_payload, cb) {
-  if (jwt_payload.name === 'hoge') {
-    return cb(null, {name: 'hoge'});
+  if (jwt_payload.id) {
+    return cb(null, {id: jwt_payload.id});
   }
   return cb(null, false);
 };
