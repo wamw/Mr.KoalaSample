@@ -6,6 +6,7 @@
   "scripts": {
     "test": "abao ./api08.raml --server http://app:9001 -h \"Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNDc3NDg2ODc0fQ.Vnzqwd8qsESIu33on9ur_RbPBvkXw6zgNSvcdyjz1qw\"",
     "serve": "nodemon index.js",
+    "cluster": "start-cluster index.js",
     "knex": "knex $@"
   },
   "author": "",
@@ -16,7 +17,8 @@
     "knex": "^0.12.6",
     "mr-koala": "github:wamw/Mr.Koala",
     "mysql": "^2.11.1",
-    "objection": "^0.6.0"
+    "objection": "^0.6.0",
+    "start-cluster": "^1.0.0"
   },
   "devDependencies": {
     "abao": "^0.4.1",
