@@ -5,16 +5,11 @@ services:
   app:
     build: .
     container_name: sample-api
+    command: ./docker/app/start.sh
     depends_on:
       - db
     volumes:
-      - ./models:/src/models
-      - ./migrations:/src/migrations
-      - ./resources:/src/resources
-      - ./seeds:/src/seeds
-      - ./index.js:/src/index.js
-      - ./knexfile.js:/src/knexfile.js
-      - ./package.json:/src/package.json
+      - .:/src
     ports:
       - 9001:9001
   db:
