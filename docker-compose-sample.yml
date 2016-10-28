@@ -5,14 +5,11 @@ services:
   app:
     build: .
     container_name: sample-api
-    command: npm run serve
+    command: ./docker/app/start.sh
     depends_on:
       - db
     volumes:
-      - ./resources:/src/resources
-      - ./index.js:/src/index.js
-      - ./knexfile.js:/src/knexfile.js
-      - ./package.json:/src/package.json
+      - .:/src
     ports:
       - 9001:9001
   db:
