@@ -1,6 +1,7 @@
 FROM mhart/alpine-node:6.7
 
 WORKDIR /src
+RUN apk add --update --no-cache bash
 RUN apk add --update --no-cache git
 ADD . .
 RUN npm install
