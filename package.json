@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "abao ./api08.raml --server http://app:9001 -h \"Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNDc3NDg2ODc0fQ.Vnzqwd8qsESIu33on9ur_RbPBvkXw6zgNSvcdyjz1qw\"",
+    "test": "abao ./api08.raml --server http://app:9000 -h \"Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNDc3NDg2ODc0fQ.Vnzqwd8qsESIu33on9ur_RbPBvkXw6zgNSvcdyjz1qw\"",
     "serve": "nodemon index.js",
     "cluster": "start-cluster index.js",
     "knex": "knex --knexfile=config.js --env=db $@"

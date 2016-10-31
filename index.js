@@ -13,7 +13,7 @@ const mr = koala(
   path.dirname(__filename) + '/api.raml',
   {
     resources: path.dirname(__filename) + '/resources',
-    secretKey: 'ppap'
+    secretKey: config.app.secret
   }
 );
 
@@ -38,4 +38,4 @@ koala.auth.handlers.jwt = function(jwt_payload, cb) {
 };
 
 
-mr.listen(9001);
+mr.listen(config.app.port);
