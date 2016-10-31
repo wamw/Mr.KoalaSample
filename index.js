@@ -2,11 +2,10 @@ const path = require('path'),
       koala = require('mr-koala'),
       Knex = require('knex'),
       Model = require('objection').Model,
-      conf = require('./knexfile.js');
+      config = require('./config.js');
       ModelUser = require('./models/user.js');
 
-
-const knex = Knex(conf.development);
+const knex = Knex(config.db);
 Model.knex(knex);
 
 
