@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken'),
       resources = require('mr-koala').resources,
       ModelUser = require('../models/user.js'),
-      config = require('./config.js');
+      config = require('../config.js');
 
 
 resources.override('/token', 'post', {
