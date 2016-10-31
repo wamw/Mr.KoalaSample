@@ -13,12 +13,10 @@ services:
     environment:
       APP_SECRET: xxxx
       APP_PORT: 9000
-      DB_CLIENT: mysql
       DB_HOST: db
       DB_USER: root
       DB_PASSWORD: hogehoge
       DB_NAME: bike_api
-      DB_MIGRATION_TABLE: migrations
     depends_on:
       - db
     volumes:

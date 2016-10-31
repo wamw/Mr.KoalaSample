@@ -4,7 +4,7 @@ module.exports = {
     port: process.env.APP_PORT || 9000
   },
   db: {
-    client: process.env.DB_CLIENT || 'mysql',
+    client: 'mysql',
     connection: {
       host: process.env.DB_HOST,
       user: process.env.DB_USER,
@@ -12,7 +12,7 @@ module.exports = {
       database: process.env.DB_NAME
     },
     migrations: {
-      tableName: process.env.DB_MIGRATION_TABLE || 'migrations'
+      tableName: 'migrations'
     }
   }
 }
