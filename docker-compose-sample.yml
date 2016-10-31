@@ -5,16 +5,34 @@ services:
   app:
     build: .
     container_name: sample-api
-    command: ./docker/app/start.sh
+    command: npm run serve
+    environment:
+      APP_SECRET: xxxx
+      APP_PORT: 9000
+      DB_CLIENT: mysql
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: hogehoge
+      DB_NAME: bike_api
+      DB_MIGRATION_TABLE: migrations
     depends_on:
       - db
     volumes:
-      - .:/src
+      - ./migrations:/src/migrations
+      - ./models:/src/models
+      - ./resources:/src/resources
+      - ./seeds:/src/seeds
+      - ./api.raml:/src/api.raml
+      - ./api08.raml:/src/api08.raml
+      - ./index.js:/src/index.js
+      - ./config.js:/src/config.js
+      - ./package.json:/src/package.json
     ports:
-      - 9001:9001
+      - 9000:9000
   db:
     image: "mysql:5.6"
     container_name: sample-db
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
     environment:
       MYSQL_DATABASE: $MYSQL_DATABASE
       MYSQL_USER: $MYSQL_USER
