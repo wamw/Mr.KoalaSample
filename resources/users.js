@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken'),
       resources = require('mr-koala').resources,
-      ModelUser = require('../models/user.js');
+      ModelUser = require('../models/user.js'),
+      config = require('./config.js');
 
 
 resources.override('/token', 'post', {
@@ -12,7 +13,7 @@ resources.override('/token', 'post', {
       context.throw('Forbidden', 403);
     }
     context.status = 200;
-    token = jwt.sign({ id: user[0].id }, 'ppap');
+    token = jwt.sign({ id: user[0].id }, config.app.secret);
     return { token: token };
   }
 });
