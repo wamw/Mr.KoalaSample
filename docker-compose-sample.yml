@@ -8,7 +8,7 @@ volumes:
 services:
   app:
     build: .
-    container_name: bike-api
+    container_name: mr-koala-sample-api
     command: ./docker/app/start.sh
     environment:
       APP_SECRET: xxxx
@@ -16,7 +16,7 @@ services:
       DB_HOST: db
       DB_USER: root
       DB_PASSWORD: hogehoge
-      DB_NAME: bike_api
+      DB_NAME: mr_koala_sample_api
     depends_on:
       - db
     volumes:
@@ -25,10 +25,10 @@ services:
       - 9000:9000
   db:
     image: "mysql:5.6"
-    container_name: bike-db
+    container_name: mr-koala-sample-db
     command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
     environment:
-      MYSQL_DATABASE: bike_api
+      MYSQL_DATABASE: mr_koala_sample_api
       MYSQL_USER: root
       MYSQL_ROOT_PASSWORD: hogehoge
     volumes:
