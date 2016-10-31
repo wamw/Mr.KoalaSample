@@ -1,0 +1,6 @@
+syncs:
+  sync-volume:
+    src: '.'
+    dest: '/src'
+    sync_strategy: 'unison'
+    sync_user: 'root'

@@ -1,24 +1,38 @@
 ---
 version: '2'
 
+volumes:
+  sync-volume:
+    external: true
+
 services:
   app:
     build: .
-    container_name: sample-api
+    container_name: bike-api
     command: ./docker/app/start.sh
+    environment:
+      APP_SECRET: xxxx
+      APP_PORT: 9000
+      DB_CLIENT: mysql
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: hogehoge
+      DB_NAME: bike_api
+      DB_MIGRATION_TABLE: migrations
     depends_on:
       - db
     volumes:
-      - .:/src
+      - sync-volume:/src
     ports:
-      - 9001:9001
+      - 9000:9000
   db:
     image: "mysql:5.6"
-    container_name: sample-db
+    container_name: bike-db
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
     environment:
-      MYSQL_DATABASE: $MYSQL_DATABASE
-      MYSQL_USER: $MYSQL_USER
-      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+      MYSQL_DATABASE: bike_api
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: hogehoge
     volumes:
       - ./docker/db/data:/var/lib/mysql
     ports:

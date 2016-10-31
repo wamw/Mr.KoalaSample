@@ -5,7 +5,7 @@ const path = require('path'),
       config = require('./config.js'),
       ModelUser = require('./models/user.js');
 
-      console.log(123);
+
 const knex = Knex(config.db);
 Model.knex(knex);
 
