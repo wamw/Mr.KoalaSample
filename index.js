@@ -11,9 +11,9 @@ Model.knex(knex);
 
 
 const mr = koala(
-  path.dirname(__filename) + '/api.raml',
+  config.app.path.raml,
   {
-    resources: path.dirname(__filename) + '/resources',
+    resources: config.app.path.resources,
     secretKey: config.app.secret
   }
 );
