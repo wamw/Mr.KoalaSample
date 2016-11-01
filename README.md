@@ -1,25 +1,24 @@
-# docker-sync installation
+# Dockerのインストール
+open https://docs.docker.com/docker-for-mac/
 
-https://github.com/EugenMayer/docker-sync/wiki
+# docker-sync をインストール
+## https://github.com/EugenMayer/docker-sync/wiki
 
 ```
 gem install docker-sync
 brew install fswatch
-
 brew install unison
 ```
 
-start
+# Dockerコンテナを起動
 
 ```
 docker-sync-stack start
 ```
 
-# for docker-compose instalattion
+# マイグレーション & 初期データ登録
 
 ```
-docker-compose up
-docker-compose run app /bin/sh
-npm run knex migrate:latest
-npm run knex seed:run
+docker-compose run --rm app npm run knex migrate:latest
+docker-compose run --rm app npm run knex seed:run
 ```
