@@ -1,7 +1,6 @@
 const auth = require('mr-koala').auth,
       resources = require('mr-koala').resources,
-      ModelUser = require('../models/user.js'),
-      config = require('../config.js');
+      ModelUser = require('../models/user.js');
 
 
 resources.override('/token', 'post', {
