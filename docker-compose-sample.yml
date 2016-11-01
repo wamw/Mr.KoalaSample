@@ -1,24 +1,36 @@
 ---
 version: '2'
 
+volumes:
+  sync-volume:
+    external: true
+
 services:
   app:
     build: .
-    container_name: sample-api
+    container_name: mr-koala-sample-api
     command: ./docker/app/start.sh
+    environment:
+      APP_SECRET: xxxx
+      APP_PORT: 9000
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: hogehoge
+      DB_NAME: mr_koala_sample_api
     depends_on:
       - db
     volumes:
-      - .:/src
+      - sync-volume:/src
     ports:
-      - 9001:9001
+      - 9000:9000
   db:
     image: "mysql:5.6"
-    container_name: sample-db
+    container_name: mr-koala-sample-db
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
     environment:
-      MYSQL_DATABASE: $MYSQL_DATABASE
-      MYSQL_USER: $MYSQL_USER
-      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+      MYSQL_DATABASE: mr_koala_sample_api
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: hogehoge
     volumes:
       - ./docker/db/data:/var/lib/mysql
     ports:

@@ -2,19 +2,19 @@ const path = require('path'),
       koala = require('mr-koala'),
       Knex = require('knex'),
       Model = require('objection').Model,
-      conf = require('./knexfile.js');
+      config = require('./config.js'),
       ModelUser = require('./models/user.js');
 
 
-const knex = Knex(conf.development);
+const knex = Knex(config.db);
 Model.knex(knex);
 
 
 const mr = koala(
-  path.dirname(__filename) + '/api.raml',
+  config.app.path.raml,
   {
-    resources: path.dirname(__filename) + '/resources',
-    secretKey: 'ppap'
+    resources: config.app.path.resources,
+    secretKey: config.app.secret
   }
 );
 
@@ -39,4 +39,4 @@ koala.auth.handlers.jwt = function(jwt_payload, cb) {
 };
 
 
-mr.listen(9001);
+mr.listen(config.app.port);
