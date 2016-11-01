@@ -1,0 +1,16 @@
+---
+
+- hosts: api
+  become: yes
+  vars_files:
+    - vars/common.yml
+  roles:
+    - leonidas.nvm
+
+
+- hosts: db
+  become: yes
+  vars_files:
+    - vars/common.yml
+  roles:
+    - geerlingguy.mysql

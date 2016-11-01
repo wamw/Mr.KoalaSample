@@ -1,0 +1,14 @@
+# nvm
+# ========================================================
+nvm:
+  user: vagrant
+  version: v0.32.1
+  node_version: 6.7.0
+
+
+
+# mysql
+# ========================================================
+mysql_root_password: hogehoge
+mysql_databases:
+  - name: mr_koala_sample_api

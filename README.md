@@ -22,3 +22,11 @@ docker-sync-stack start
 docker-compose run --rm app npm run knex migrate:latest
 docker-compose run --rm app npm run knex seed:run
 ```
+
+
+vagrant
+os: ubuntu 16.04 LTS
+vagrant box: https://atlas.hashicorp.com/gbarbieru/boxes/xenial
+
+# plugins
+vagrant plugin install sahara

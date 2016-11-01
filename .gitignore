@@ -1,5 +1,6 @@
 .envrc
 .imdone
+.vagrant
 node_modules
 docker/db/
 npm-debug.log
