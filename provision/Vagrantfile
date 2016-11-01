@@ -13,7 +13,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Run Ansible from the Vagrant VM
   config.vm.provision "ansible_local" do |ansible|
-    ansible.playbook = "provision/playbook.yml"
+    ansible.playbook = "playbook.yml"
     ansible.inventory_path = "inventories/vagrant"
     ansible.limit = "all"
   end
