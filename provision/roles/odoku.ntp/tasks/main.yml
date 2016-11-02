@@ -1,0 +1,35 @@
+---
+
+- name: Install NTP
+  sudo: yes
+  apt:
+    name:  "{{ item }}"
+    state: present
+  with_items:
+    - ntp
+    - ntpdate
+
+- name: Make localized timezone
+  sudo: yes
+  file:
+    src:   /usr/share/zoneinfo/{{ ntp_timezone }}
+    dest:  /etc/localtime
+    state: link
+    force: yes
+
+- name: Stop NTP
+  sudo: yes
+  service:
+    name: ntp
+    state: stopped
+
+- name: Setup NTP
+  sudo:    yes
+  command: ntpdate {{ ntp_server }}
+  notify:  Start NTP
+
+- name: Enable ntp service
+  sudo: yes
+  service:
+    name:    ntp
+    enabled: yes
