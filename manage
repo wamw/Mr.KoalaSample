@@ -26,6 +26,6 @@ case "$1" in
     eval "docker exec -it mr-koala-sample-api /bin/sh ${@:2}"
     ;;
   * )
-    eval "$DOCKER /bin/sh ${@:2}"
+    eval "$DOCKER npm run $@"
     ;;
 esac
