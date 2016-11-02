@@ -13,8 +13,8 @@ case "$1" in
   "log" )
     eval "docker-compose logs -f --tail 100 app"
     ;;
-  "restart" )
-    eval "docker-compose restart app"
+  "start" )
+    eval "docker-sync-stack start"
     ;;
   "recreate" )
     eval "docker-compose up -d --no-deps app"
