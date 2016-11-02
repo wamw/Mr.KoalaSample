@@ -23,10 +23,22 @@ docker-compose run --rm app npm run knex migrate:latest
 docker-compose run --rm app npm run knex seed:run
 ```
 
+---
 
-vagrant
-os: ubuntu 16.04 LTS
+# vagrant
+Installed Version: 1.8.6
+
+ゲストos: ubuntu 16.04 LTS
 vagrant box: https://atlas.hashicorp.com/gbarbieru/boxes/xenial
 
-# plugins
-vagrant plugin install sahara
+# vagrant 起動
+
+```
+vagrant up
+```
+
+# vagrant provision
+
+```
+vagrant provision
+```
