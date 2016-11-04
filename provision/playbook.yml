@@ -12,6 +12,14 @@
     - vars/common.yml
   roles:
     - leonidas.nvm
+    - role: franklinkim.environment
+      environment_config:
+        APP_SECRET: xxxx
+        APP_PORT: 9000
+        DB_HOST: 127.0.0.1
+        DB_USER: root
+        DB_PASSWORD: hogehoge
+        DB_NAME: mr_koala_sample_api
 
 
 - hosts: db

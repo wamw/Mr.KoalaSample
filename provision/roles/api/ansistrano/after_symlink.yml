@@ -1,0 +1,6 @@
+---
+- name: restart api
+#   service: name=myapp-api state=restarted
+  shell: /bin/bash -lc "npm run serve"
+  args:
+    chdir: "{{ ansistrano_release_path.stdout }}"

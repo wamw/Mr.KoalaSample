@@ -1,0 +1,14 @@
+- name: npm install
+  shell: /bin/bash -lc "npm install"
+  args:
+    chdir: "{{ ansistrano_release_path.stdout }}"
+
+- name: database migrate
+  shell: /bin/bash -lc "npm run knex migrate:latest"
+  args:
+    chdir: "{{ ansistrano_release_path.stdout }}"
+
+- name: database seed
+  shell: /bin/bash -lc "npm run knex seed:run"
+  args:
+    chdir: "{{ ansistrano_release_path.stdout }}"
