@@ -16,7 +16,7 @@
     "jsonwebtoken": "^7.1.9",
     "knex": "^0.12.6",
     "mr-koala": "github:wamw/Mr.Koala",
-    "mysql": "^2.11.1",
+    "mysql": "^2.12.0",
     "objection": "^0.6.0",
     "start-cluster": "^1.0.0"
   },
