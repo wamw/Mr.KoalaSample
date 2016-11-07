@@ -1,7 +1,7 @@
 ---
 
 - hosts: api
-  name: "Mr.Kosala Sample アプリケーション"
+  name: Mr.Kosala Sample アプリケーション
   vars:
     ansistrano_deploy_to: /home/vagrant/app
     ansistrano_deploy_via: git
@@ -9,8 +9,8 @@
     ansistrano_git_branch: master
     ansistrano_allow_anonymous_stats: yes
     # ansistrano_shared_paths: ["log","config"]
-    ansistrano_after_update_code_tasks_file: "{{ playbook_dir }}/roles/api/ansistrano/after_update_code.yml"
-    ansistrano_after_symlink_tasks_file: "{{ playbook_dir }}/roles/api/ansistrano/after_symlink.yml"
+    ansistrano_after_update_code_tasks_file: "{{ playbook_dir }}/deploy/tasks/api/after_update_code.yml"
+    ansistrano_after_symlink_tasks_file: "{{ playbook_dir }}/deploy/tasks/api/after_symlink.yml"
   # vars_files:
   #   - vars/all/main.yml
   #   - vars/{{ stage }}/main.yml

@@ -1,0 +1,9 @@
+---
+
+- hosts: api
+  name: Mr.Kosala Sample アプリケーション rollback
+  vars:
+    ansistrano_deploy_to: /home/vagrant/app
+    ansistrano_after_symlink_tasks_file: "{{ playbook_dir }}/deploy/tasks/api/after_symlink.yml"
+  roles:
+    - carlosbuenosvinos.ansistrano-rollback
