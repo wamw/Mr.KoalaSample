@@ -1,0 +1,29 @@
+# systemd service
+# ========================================================
+systemd_service_systemd_dir: /etc/systemd/system
+systemd_service_name: koala-sample-api
+systemd_service_Unit_Description: koala sample api server
+systemd_service_Unit_After:
+  - syslog.target
+  - network.target
+systemd_service_Service_Type: simple
+systemd_service_Service_WorkingDirectory: /home/vagrant/app/current
+systemd_service_Service_ExecStart: /bin/bash -lc "npm run serve"
+systemd_service_Service_EnvironmentFile: /etc/environment
+systemd_service_Service_User: vagrant
+systemd_service_Service_Group: vagrant
+systemd_service_Service_Restart: always
+systemd_service_Install_WantedBy: multi-user.target
+
+
+# ansistrano
+# ========================================================
+ansistrano_deploy_to: /home/vagrant/app
+ansistrano_deploy_via: git
+ansistrano_git_repo: git@github.com:wamw/Mr.KoalaSample.git
+ansistrano_git_branch: master
+ansistrano_allow_anonymous_stats: yes
+ansistrano_keep_releases: 3
+# ansistrano_shared_paths: ["log","config"]
+ansistrano_after_update_code_tasks_file: "{{ playbook_dir }}/deploy/tasks/api/after_update_code.yml"
+# ansistrano_after_symlink_tasks_file: "{{ playbook_dir }}/deploy/tasks/api/after_symlink.yml"
