@@ -1,5 +1,6 @@
 - name: npm install
   shell: /bin/bash -lc "npm install"
+  ignore_errors: yes
   args:
     chdir: "{{ ansistrano_release_path.stdout }}"
 
