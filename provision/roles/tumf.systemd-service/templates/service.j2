@@ -33,14 +33,32 @@ Before={{ systemd_service_Unit_Before | join(",") }}
 {% if systemd_service_Unit_After is string %}
 After={{ systemd_service_Unit_After }}
 {% else %}
-After={{ systemd_service_Unit_After | join(",") }}
+After={{ systemd_service_Unit_After | join(" ") }}
 {% endif %}
 {% endif -%}
 
 [Service]
 ExecStart={{ systemd_service_Service_ExecStart }}
+
+{% if systemd_service_Service_EnvironmentFile is defined %}
+EnvironmentFile={{ systemd_service_Service_EnvironmentFile }}
+{% else %}
 EnvironmentFile=-/etc/default/{{ systemd_service_name }}
+{% endif -%}
+
 Type={{ systemd_service_Service_Type }}
+
+{% if systemd_service_Service_WorkingDirectory is defined %}
+WorkingDirectory={{ systemd_service_Service_WorkingDirectory }}
+{% endif -%}
+
+{% if systemd_service_Service_User is defined %}
+User={{ systemd_service_Service_User }}
+{% endif -%}
+
+{% if systemd_service_Service_Group is defined %}
+Group={{ systemd_service_Service_Group }}
+{% endif -%}
 
 {% if systemd_service_ExecReload is defined %}
 ExecReload={{ systemd_service_ExecReload }}
