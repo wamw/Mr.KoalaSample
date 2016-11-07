@@ -42,3 +42,17 @@ vagrant up
 ```
 vagrant provision
 ```
+
+---
+
+# deploy
+
+```sh
+ansible-playbook -i inventories/vagrant deploy.yml
+```
+
+# rollback
+
+```sh
+ansible-playbook -i inventories/vagrant rollback.yml
+```
