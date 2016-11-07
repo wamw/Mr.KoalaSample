@@ -1,0 +1,31 @@
+#!/bin/bash
+
+set -e # fail on any error
+
+
+DOCKER="docker-compose run --rm app"
+
+
+case "$1" in
+  "test")
+    eval "docker exec -it mr-koala-sample-api npm run test"
+    ;;
+  "log" )
+    eval "docker-compose logs -f --tail 100 app"
+    ;;
+  "start" )
+    eval "docker-sync-stack start"
+    ;;
+  "recreate" )
+    eval "docker-compose up -d --no-deps app"
+    ;;
+  "build" )
+    eval "docker-compose build app"
+    ;;
+  "login" )
+    eval "docker exec -it mr-koala-sample-api /bin/sh ${@:2}"
+    ;;
+  * )
+    eval "$DOCKER npm run $@"
+    ;;
+esac
