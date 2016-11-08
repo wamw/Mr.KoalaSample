@@ -1,0 +1,4 @@
+---
+
+ntp_timezone: Asia/Tokyo
+ntp_server:   ntp.nict.jp

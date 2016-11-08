@@ -1,0 +1,10 @@
+---
+
+- hosts: api
+  name: Mr.Kosala Sample アプリケーション
+  vars_files:
+    - vars/common.yml
+    - vars/deploy.yml
+  roles:
+    - { role: tumf.systemd-service, become: yes }
+    - carlosbuenosvinos.ansistrano-deploy

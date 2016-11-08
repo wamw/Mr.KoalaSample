@@ -1,0 +1,32 @@
+# nvm
+# ========================================================
+nvm:
+  user: vagrant
+  version: v0.32.1
+  node_version: 6.7.0
+
+
+
+# mysql
+# ========================================================
+mysql_root_password: hogehoge
+mysql_databases:
+  - name: mr_koala_sample_api
+
+
+# systemd service
+# ========================================================
+systemd_service_systemd_dir: /etc/systemd/system
+systemd_service_name: koala-sample-api
+systemd_service_Unit_Description: koala sample api server
+systemd_service_Unit_After:
+  - syslog.target
+  - network.target
+systemd_service_Service_Type: simple
+systemd_service_Service_WorkingDirectory: /home/vagrant/app/current
+systemd_service_Service_ExecStart: /bin/bash -lc "npm run serve"
+systemd_service_Service_EnvironmentFile: /etc/environment
+systemd_service_Service_User: vagrant
+systemd_service_Service_Group: vagrant
+systemd_service_Service_Restart: always
+systemd_service_Install_WantedBy: multi-user.target

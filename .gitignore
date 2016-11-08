@@ -1,6 +1,9 @@
 .envrc
 .imdone
+.vagrant
 node_modules
 docker/db/
 npm-debug.log
 docker-compose.yml
+provision/deploy.retry
+provision/playbook.retry

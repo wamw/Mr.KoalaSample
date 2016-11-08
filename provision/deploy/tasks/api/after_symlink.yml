@@ -1,0 +1,7 @@
+---
+
+- name: restart api
+  become: yes
+  service:
+    name: "{{ systemd_service_name }}"
+    state: restarted

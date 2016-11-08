@@ -1,0 +1,9 @@
+---
+
+- hosts: api
+  name: Mr.Kosala Sample アプリケーション rollback
+  vars_files:
+    - vars/common.yml
+    - vars/rollback.yml
+  roles:
+    - carlosbuenosvinos.ansistrano-rollback
