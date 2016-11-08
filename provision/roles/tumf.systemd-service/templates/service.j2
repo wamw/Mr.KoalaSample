@@ -39,13 +39,7 @@ After={{ systemd_service_Unit_After | join(" ") }}
 
 [Service]
 ExecStart={{ systemd_service_Service_ExecStart }}
-
-{% if systemd_service_Service_EnvironmentFile is defined %}
 EnvironmentFile={{ systemd_service_Service_EnvironmentFile }}
-{% else %}
-EnvironmentFile=-/etc/default/{{ systemd_service_name }}
-{% endif -%}
-
 Type={{ systemd_service_Service_Type }}
 
 {% if systemd_service_Service_WorkingDirectory is defined %}
