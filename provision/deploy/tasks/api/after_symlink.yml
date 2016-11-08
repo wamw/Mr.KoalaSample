@@ -1,6 +1,7 @@
 ---
+
 - name: restart api
-#   service: name=myapp-api state=restarted
-  shell: /bin/bash -lc "npm run serve"
-  args:
-    chdir: "{{ ansistrano_release_path.stdout }}"
+  become: yes
+  service:
+    name: "{{ systemd_service_name }}"
+    state: restarted
