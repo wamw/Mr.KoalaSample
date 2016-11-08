@@ -4,7 +4,7 @@
 ansistrano_deploy_to: /home/vagrant/app
 ansistrano_deploy_via: git
 ansistrano_git_repo: git@github.com:wamw/Mr.KoalaSample.git
-ansistrano_git_branch: feature-vagrant
+ansistrano_git_branch: master
 ansistrano_allow_anonymous_stats: yes
 ansistrano_keep_releases: 3
 # ansistrano_shared_paths: ["log","config"]
