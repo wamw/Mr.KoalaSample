@@ -10,13 +10,13 @@ class User extends Model {
 
 
   $beforeInsert() {
-    // TODO:0 docker のtimezone を Asia/Tokyo にする必要がある
+    // サーバーのtimezone を Asia/Tokyo にする必要がある
     this.created_at = dateformat(new Date(), 'yyyy/mm/dd HH:MM:ss');
     this.updated_at = dateformat(new Date(), 'yyyy/mm/dd HH:MM:ss');
   }
 
   $beforeUpdate() {
-    // TODO:10 docker のtimezone を Asia/Tokyo にする必要がある
+    // サーバーのtimezone を Asia/Tokyo にする必要がある
     this.updated_at = dateformat(new Date(), 'yyyy/mm/dd HH:MM:ss');
   }
 }
